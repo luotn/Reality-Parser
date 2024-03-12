@@ -11,7 +11,16 @@ import SwiftUI
 struct Reality_ParserApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView().frame(width: 450, height: 500)
+        }
+        .commands() {
+            CommandGroup(before: .appVisibility) {
+                Button(String(localized: "Change Language")) {
+                    print("Changing language...")
+                    ContentView().changeLanguage()
+                }
+                .keyboardShortcut("l", modifiers: .command)
+            }
         }
     }
 }

@@ -10,7 +10,8 @@
 		73B533662816D5BA00D5CB0E /* Reality_ParserApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B533652816D5BA00D5CB0E /* Reality_ParserApp.swift */; };
 		73B533682816D5BA00D5CB0E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B533672816D5BA00D5CB0E /* ContentView.swift */; };
 		73B5336A2816D5BA00D5CB0E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73B533692816D5BA00D5CB0E /* Assets.xcassets */; };
-		73B5336D2816D5BA00D5CB0E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73B5336C2816D5BA00D5CB0E /* Preview Assets.xcassets */; };
+		73B533752816D60100D5CB0E /* Constructor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B533742816D60100D5CB0E /* Constructor.swift */; };
+		73B533782816D77000D5CB0E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 73B5337A2816D77000D5CB0E /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -18,8 +19,11 @@
 		73B533652816D5BA00D5CB0E /* Reality_ParserApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reality_ParserApp.swift; sourceTree = "<group>"; };
 		73B533672816D5BA00D5CB0E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		73B533692816D5BA00D5CB0E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		73B5336C2816D5BA00D5CB0E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		73B5336E2816D5BA00D5CB0E /* Reality_Parser.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Reality_Parser.entitlements; sourceTree = "<group>"; };
+		73B533742816D60100D5CB0E /* Constructor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constructor.swift; sourceTree = "<group>"; };
+		73B533792816D77000D5CB0E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		73B5337B2816D77C00D5CB0E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		73B5337C2816DE7200D5CB0E /* Reality-Parser-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Reality-Parser-Info.plist"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,21 +56,15 @@
 		73B533642816D5BA00D5CB0E /* Reality Parser */ = {
 			isa = PBXGroup;
 			children = (
+				73B5337C2816DE7200D5CB0E /* Reality-Parser-Info.plist */,
 				73B533652816D5BA00D5CB0E /* Reality_ParserApp.swift */,
+				73B533742816D60100D5CB0E /* Constructor.swift */,
 				73B533672816D5BA00D5CB0E /* ContentView.swift */,
+				73B5337A2816D77000D5CB0E /* Localizable.strings */,
 				73B533692816D5BA00D5CB0E /* Assets.xcassets */,
 				73B5336E2816D5BA00D5CB0E /* Reality_Parser.entitlements */,
-				73B5336B2816D5BA00D5CB0E /* Preview Content */,
 			);
 			path = "Reality Parser";
-			sourceTree = "<group>";
-		};
-		73B5336B2816D5BA00D5CB0E /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				73B5336C2816D5BA00D5CB0E /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -85,6 +83,8 @@
 			dependencies = (
 			);
 			name = "Reality Parser";
+			packageProductDependencies = (
+			);
 			productName = "Reality Parser";
 			productReference = 73B533622816D5BA00D5CB0E /* Reality Parser.app */;
 			productType = "com.apple.product-type.application";
@@ -97,7 +97,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1330;
-				LastUpgradeCheck = 1330;
+				LastUpgradeCheck = 1520;
 				TargetAttributes = {
 					73B533612816D5BA00D5CB0E = {
 						CreatedOnToolsVersion = 13.3.1;
@@ -111,8 +111,11 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
 			);
 			mainGroup = 73B533592816D5B900D5CB0E;
+			packageReferences = (
+			);
 			productRefGroup = 73B533632816D5BA00D5CB0E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -127,7 +130,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				73B5336D2816D5BA00D5CB0E /* Preview Assets.xcassets in Resources */,
+				73B533782816D77000D5CB0E /* Localizable.strings in Resources */,
 				73B5336A2816D5BA00D5CB0E /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -141,16 +144,30 @@
 			files = (
 				73B533682816D5BA00D5CB0E /* ContentView.swift in Sources */,
 				73B533662816D5BA00D5CB0E /* Reality_ParserApp.swift in Sources */,
+				73B533752816D60100D5CB0E /* Constructor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		73B5337A2816D77000D5CB0E /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				73B533792816D77000D5CB0E /* en */,
+				73B5337B2816D77C00D5CB0E /* zh-Hans */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		73B5336F2816D5BA00D5CB0E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -180,9 +197,11 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -197,7 +216,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 12.3;
+				MACOSX_DEPLOYMENT_TARGET = 14.2;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -211,6 +230,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -240,9 +260,11 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -251,7 +273,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 12.3;
+				MACOSX_DEPLOYMENT_TARGET = 14.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
@@ -266,19 +288,25 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Reality Parser/Reality_Parser.entitlements";
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Reality Parser/Preview Content\"";
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = 2APZ6GJB83;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Reality-Parser-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Reality Parser";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.TianningDigital.Reality-Parser";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -293,19 +321,25 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Reality Parser/Reality_Parser.entitlements";
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Reality Parser/Preview Content\"";
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = 2APZ6GJB83;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Reality-Parser-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Reality Parser";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.TianningDigital.Reality-Parser";
 				PRODUCT_NAME = "$(TARGET_NAME)";

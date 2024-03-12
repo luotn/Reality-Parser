@@ -1,0 +1,41 @@
+/* 
+  Localizable.strings
+  Reality Parser
+
+  Created by 罗天宁 on 25/04/2022.
+  
+*/
+
+"Change Language" = "更改语言";
+
+"Input" = "输入文件夹";
+"Select Folder" = "选择文件夹";
+"Input folder not selected." = "未选择输入文件夹！";
+
+"Output" = "输出文件夹";
+"Output location not selected." = "未选择输出位置！";
+"Untitled.usdz" = "未命名.usdz";
+
+"Preferences" = "偏好设置";
+"Detail" = "精度";
+"Reduced" = "较少";
+"Medium" = "中等";
+"Full" = "全部";
+"RAW" = "RAW";
+"Reduced and Medium are IOS ready, Full and Raw require further processing." = "较少和中等可以直接在IOS设备上查看，全部和RAW需要进一步处理以使用。";
+
+"Order" = "文件顺序";
+"Unordered" = "未排序";
+"Sequential" = "顺序";
+"Setting to sequential may speed up computation." = "顺序的文件可能会加快计算速度。";
+
+"Sensitivity" = "灵敏度";
+"Normal" = "普通";
+"High" = "高";
+"High if the scanned object does not contain discernible structures, edges or textures." = "如果扫描的对象不包含明显的结构、边缘或纹理，设置为高。";
+
+"Process!" = "开始处理！";
+"Processing..." = "处理中...";
+"Done!" = "完成！";
+
+"Stop" = "停止处理";

@@ -1,0 +1,42 @@
+/* 
+  Localizable.strings
+  Reality Parser
+
+  Created by 罗天宁 on 25/04/2022.
+  
+*/
+
+"Change Language" = "Change Language";
+
+"Input" = "Input";
+"Select Folder" = "Select Folder";
+"Input folder not selected." = "Input folder not selected.";
+
+"Output" = "Output";
+"Output location not selected." = "Output location not selected.";
+"Untitled.usdz" = "Untitled.usdz";
+
+
+"Preferences" = "Preferences";
+"Detail" = "Detail";
+"Reduced" = "Reduced";
+"Medium" = "Medium";
+"Full" = "Full";
+"RAW" = "RAW";
+"Reduced and Medium are IOS ready, Full and Raw require further processing." = "Reduced and Medium are IOS ready, Full and Raw require further processing.";
+
+"Order" = "Order";
+"Unordered" = "Unordered";
+"Sequential" = "Sequential";
+"Setting to sequential may speed up computation." = "Setting to sequential may speed up computation.";
+
+"Sensitivity" = "Sensitivity";
+"Normal" = "Normal";
+"High" = "High";
+"High if the scanned object does not contain discernible structures, edges or textures." = "High if the scanned object does not contain discernible structures, edges or textures.";
+
+"Process!" = "Process!";
+"Processing..." = "Processing...";
+"Done!" = "Done!";
+
+"Stop" = "Stop";
