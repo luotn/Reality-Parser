@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 55;
+	objectVersion = 60;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -12,6 +12,7 @@
 		73B5336A2816D5BA00D5CB0E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73B533692816D5BA00D5CB0E /* Assets.xcassets */; };
 		73B533752816D60100D5CB0E /* Constructor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B533742816D60100D5CB0E /* Constructor.swift */; };
 		73B533782816D77000D5CB0E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 73B5337A2816D77000D5CB0E /* Localizable.strings */; };
+		73DABDC32BB9A48100B6925E /* Zip in Frameworks */ = {isa = PBXBuildFile; productRef = 73DABDC22BB9A48100B6925E /* Zip */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				73DABDC32BB9A48100B6925E /* Zip in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -84,6 +86,7 @@
 			);
 			name = "Reality Parser";
 			packageProductDependencies = (
+				73DABDC22BB9A48100B6925E /* Zip */,
 			);
 			productName = "Reality Parser";
 			productReference = 73B533622816D5BA00D5CB0E /* Reality Parser.app */;
@@ -115,6 +118,7 @@
 			);
 			mainGroup = 73B533592816D5B900D5CB0E;
 			packageReferences = (
+				73DABDC12BB9A48100B6925E /* XCLocalSwiftPackageReference "../../../Downloads/Zip-2.1.2" */,
 			);
 			productRefGroup = 73B533632816D5BA00D5CB0E /* Products */;
 			projectDirPath = "";
@@ -370,6 +374,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		73DABDC12BB9A48100B6925E /* XCLocalSwiftPackageReference "../../../Downloads/Zip-2.1.2" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = "../../../Downloads/Zip-2.1.2";
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		73DABDC22BB9A48100B6925E /* Zip */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Zip;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 73B5335A2816D5B900D5CB0E /* Project object */;
 }

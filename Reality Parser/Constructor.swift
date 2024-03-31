@@ -9,6 +9,7 @@ import Foundation
 import os
 import RealityKit
 import Metal
+import Zip
 
 /// Error thrown when an illegal option is specified.
 private enum IllegalOption: Swift.Error {
@@ -135,7 +136,42 @@ class Constructor:ObservableObject {
         print("Request complete: \(String(describing: request)) with result...")
         switch result {
         case .modelFile(let url):
-            print("\tmodelFile available at url=\(url)")
+            do {
+                /// Clean up temp folders
+                let fileManager = FileManager()
+                let tmpDirectory = try fileManager.contentsOfDirectory(atPath: NSTemporaryDirectory())
+                try tmpDirectory.forEach {[unowned fileManager] file in
+                    let path = String.init(format: "%@%@", NSTemporaryDirectory(), file)
+                    try fileManager.removeItem(atPath: path)
+                }
+                print("Cleared photogrammetry session cache")
+//                /// Converts usdc crate in result to usda text format
+//                /// Unzips the usdz file to convert content.
+//                Zip.addCustomFileExtension("usdz")
+//                let unzipDirectory = try Zip.quickUnzipFile(url) // Unzip usdz
+//                print(unzipDirectory)
+//                
+//                /// Setup command line tools
+//                let task = Process()
+//                let pipe = Pipe()
+//                task.standardOutput = pipe
+//                task.standardError = pipe
+
+//                let filename = url.lastPathComponent.replacingOccurrences(of: ".usdz", with: "_ascii.usdz")
+//                let foldername = url.lastPathComponent.replacingOccurrences(of: ".usdz", with: "")
+//                
+//                task.arguments = ["-c", "/Applications/usdpython/USD.command; cd Documents/\(foldername); which python; /Applications/usdpython/usdzconvert/usdzconvert baked_mesh.usdc baked_mesh.usda; /Applications/usdpython/USD/usdzip \(filename) --asset \(unzipDirectory)/baked_mesh.usda"]
+//                task.executableURL = URL(fileURLWithPath: "/bin/zsh") //<--updated
+//                task.standardInput = nil
+//
+//                try task.run() //<--updated
+//                
+//                let data = pipe.fileHandleForReading.readDataToEndOfFile()
+//                let output = String(data: data, encoding: .utf8)!
+//                print(output)
+            } catch {
+                print("Unzip error: \(String(describing: error))")
+            }
         default:
             print("\tUnexpected result: \(String(describing: result))")
         }
