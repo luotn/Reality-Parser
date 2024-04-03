@@ -9,7 +9,7 @@ import Foundation
 import os
 import RealityKit
 import Metal
-import Zip
+import ZIPFoundation
 
 /// Error thrown when an illegal option is specified.
 private enum IllegalOption: Swift.Error {
@@ -28,14 +28,17 @@ class Constructor:ObservableObject {
     private var sampleOrdering: Configuration.SampleOrdering?
     private var featureSensitivity: Configuration.FeatureSensitivity?
     private var session: PhotogrammetrySession? = nil
+    private static var resultPath = ""
     
     /// The main run loop entered at the end of the file.
-    func process(inputFolder: String, outputFilename: String, detail: String, ordering: String, sensitivity: String, contentView: ContentView) throws {
+    func process(inputFolder: String, outputFilename: String, detail: String, ordering: String, sensitivity: String, contentView: ContentView, resultPath: String) throws {
         
         /// Check hardware meets requirement.
         guard PhotogrammetrySession.isSupported else {
             throw IllegalOption.invalidHardware("Program terminated early because the hardware doesn't support Object Capture.\nObject Capture is not available on this computer.")
         }
+        
+        Constructor.resultPath = resultPath
         
         let inputFolderUrl = URL(fileURLWithPath: inputFolder, isDirectory: true)
         var configuration = PhotogrammetrySession.Configuration()
@@ -55,10 +58,11 @@ class Constructor:ObservableObject {
             break;
         }
         
+        /// Remove present file.
         let fileManager = FileManager.default
-        if fileManager.fileExists(atPath: outputFilename) {
+        if fileManager.fileExists(atPath: resultPath) {
             do {
-                try fileManager.removeItem(atPath: outputFilename)
+                try fileManager.removeItem(atPath: resultPath)
             } catch let error {
                 throw IllegalOption.fileRemoveError("Cannot replace file: \n \(String(describing: error))")
             }
@@ -133,45 +137,25 @@ class Constructor:ObservableObject {
     private static func handleRequestComplete(request: PhotogrammetrySession.Request,
                                               result: PhotogrammetrySession.Result,
                                               contentView: ContentView) {
-        print("Request complete: \(String(describing: request)) with result...")
+        print("Request complete: \(String(describing: request))")
         switch result {
         case .modelFile(let url):
-            do {
-                /// Clean up temp folders
-                let fileManager = FileManager()
-                let tmpDirectory = try fileManager.contentsOfDirectory(atPath: NSTemporaryDirectory())
-                try tmpDirectory.forEach {[unowned fileManager] file in
-                    let path = String.init(format: "%@%@", NSTemporaryDirectory(), file)
-                    try fileManager.removeItem(atPath: path)
-                }
-                print("Cleared photogrammetry session cache")
-//                /// Converts usdc crate in result to usda text format
-//                /// Unzips the usdz file to convert content.
-//                Zip.addCustomFileExtension("usdz")
-//                let unzipDirectory = try Zip.quickUnzipFile(url) // Unzip usdz
-//                print(unzipDirectory)
-//                
-//                /// Setup command line tools
-//                let task = Process()
-//                let pipe = Pipe()
-//                task.standardOutput = pipe
-//                task.standardError = pipe
-
-//                let filename = url.lastPathComponent.replacingOccurrences(of: ".usdz", with: "_ascii.usdz")
-//                let foldername = url.lastPathComponent.replacingOccurrences(of: ".usdz", with: "")
-//                
-//                task.arguments = ["-c", "/Applications/usdpython/USD.command; cd Documents/\(foldername); which python; /Applications/usdpython/usdzconvert/usdzconvert baked_mesh.usdc baked_mesh.usda; /Applications/usdpython/USD/usdzip \(filename) --asset \(unzipDirectory)/baked_mesh.usda"]
-//                task.executableURL = URL(fileURLWithPath: "/bin/zsh") //<--updated
-//                task.standardInput = nil
-//
-//                try task.run() //<--updated
-//                
-//                let data = pipe.fileHandleForReading.readDataToEndOfFile()
-//                let output = String(data: data, encoding: .utf8)!
-//                print(output)
-            } catch {
-                print("Unzip error: \(String(describing: error))")
+        
+        /// Converts USDA and assets to USDZ
+//        Constructor.convert(url: url);
+            
+        /// Clean up temp folders
+        do {
+            let fileManager = FileManager()
+            let tmpDirectory = try fileManager.contentsOfDirectory(atPath: NSTemporaryDirectory())
+            try tmpDirectory.forEach {[unowned fileManager] file in
+                let path = String.init(format: "%@%@", NSTemporaryDirectory(), file)
+                try fileManager.removeItem(atPath: path)
             }
+            print("Cleared photogrammetry session cache")
+        } catch {
+            print("Cleanup error: \(String(describing: error))")
+        }
         default:
             print("\tUnexpected result: \(String(describing: result))")
         }
@@ -184,5 +168,35 @@ class Constructor:ObservableObject {
         if self.session != nil {
             self.session?.cancel()
         }
+    }
+    
+    /// Converts usdc crate in result to usda text format
+    private static func convert(url: URL){
+//        do {
+//            let fileManager = FileManager()
+//            let currentWorkingURL = URL(fileURLWithPath: NSTemporaryDirectory()).appending(path: "modelTemp/")
+
+
+//
+//            var output = URL(fileURLWithPath: self.resultPath)
+//            print("From: " + String(describing: currentWorkingURL) + " To: " + String(describing: output))
+//            try fileManager.zipItem(at: currentWorkingURL,
+//                                    to: output)
+//            let currentWorkingPath = fileManager.currentDirectoryPath
+//            var sourceURL = URL(fileURLWithPath: currentWorkingPath)
+//            sourceURL.appendPathComponent("/tmp/modelTemp/")
+//            let USDZFolder = sourceURL.appending(path: "0/")
+//            try fileManager.createDirectory(at: USDZFolder, withIntermediateDirectories: true)
+//            try fileManager.moveItem(at: sourceURL.appending(path: "baked_mesh_ao0.png"), to: USDZFolder.appending(path: "baked_mesh_ao0.png"))
+//            try fileManager.moveItem(at: sourceURL.appending(path: "baked_mesh_norm0.png"), to: USDZFolder.appending(path: "baked_mesh_norm0.png"))
+//            try fileManager.moveItem(at: sourceURL.appending(path: "baked_mesh_tex0.png"), to: USDZFolder.appending(path: "baked_mesh_tex0.png"))
+//            try fileManager.removeItem(at: sourceURL.appending(path: "baked_mesh.mtl"))
+//            try fileManager.removeItem(at: sourceURL.appending(path: "baked_mesh.obj"))
+//            var destinationURL = URL(fileURLWithPath: currentWorkingPath)
+//            destinationURL.appendPathComponent("archive.usdz")
+//            try fileManager.zipItem(at: sourceURL, to: destinationURL)
+//        } catch {
+//            print("Creation of ZIP archive failed with error:\(error)")
+//        }
     }
 }

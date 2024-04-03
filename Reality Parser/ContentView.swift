@@ -49,10 +49,11 @@ struct ContentView: View {
                 Label(String(localized: "Output"), systemImage: "2.circle")
                     .font(.system(size: 20, weight: .bold, design: .monospaced))
                     .padding([.bottom], 1);
-                Button(String(localized: "Select Folder")) {
-                    outputFolder = self.selectOutputFolder()
-                    print(String(localized: "Output Folder selected: ") + outputFolder)
-                }.padding([.bottom], 5)
+                HStack{
+                    Button(String(localized: "Select Folder")) {
+                        self.selectOutputFolder()
+                    }.padding([.bottom], 5)
+                }
                 HStack {
                     if (outputFolder != "") {
                         Image(systemName: "checkmark.circle").foregroundColor(Color.green)
@@ -108,12 +109,14 @@ struct ContentView: View {
                             
                             self.progress = 0.0
                             self.compeleted = false
-                            
+                            let fileManager = FileManager()
+//                            let tempDirectory = fileManager.temporaryDirectory.appending(component: "modelTemp/").path()
                             try constructor.process(inputFolder: inputFolder, outputFilename: outputFolder,
                                                     detail: detailSetting,
                                                     ordering: ordered == orders[0] ? "unordered" : "sequential",
                                                     sensitivity: sensitivity == sensitivities[0] ? "normal" : "high",
-                                                    contentView: self)
+                                                    contentView: self,
+                                                    resultPath: self.outputFolder)
                         } catch {
                             print((String(describing: error)))
                         }
@@ -152,16 +155,14 @@ struct ContentView: View {
     
     private func selectOutputFolder() -> String{
         let savePanel = NSSavePanel()
-        savePanel.nameFieldStringValue = String(localized: "Untitled.usdz");
+        savePanel.title = String(localized: "Select folder for the output:"); /// @TODO
         savePanel.showsResizeIndicator = true;
+        savePanel.nameFieldStringValue = String(localized: "Untitled.usdz")
         
-        if (savePanel.runModal() == NSApplication.ModalResponse.OK) {
+        if (savePanel.runModal() ==  NSApplication.ModalResponse.OK) {
             let result = savePanel.url
-            
-            if (!result!.path.isEmpty) {
-                
-            }
             if (result != nil) {
+                self.outputFolder = result!.path
                 return result!.path
             }
         }
