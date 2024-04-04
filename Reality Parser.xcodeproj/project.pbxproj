@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		732F61882BBB258600B36209 /* ZIPFoundation in Frameworks */ = {isa = PBXBuildFile; productRef = 732F61872BBB258600B36209 /* ZIPFoundation */; };
 		73B533662816D5BA00D5CB0E /* Reality_ParserApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B533652816D5BA00D5CB0E /* Reality_ParserApp.swift */; };
 		73B533682816D5BA00D5CB0E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B533672816D5BA00D5CB0E /* ContentView.swift */; };
 		73B5336A2816D5BA00D5CB0E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73B533692816D5BA00D5CB0E /* Assets.xcassets */; };
@@ -32,7 +31,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				732F61882BBB258600B36209 /* ZIPFoundation in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,7 +84,6 @@
 			);
 			name = "Reality Parser";
 			packageProductDependencies = (
-				732F61872BBB258600B36209 /* ZIPFoundation */,
 			);
 			productName = "Reality Parser";
 			productReference = 73B533622816D5BA00D5CB0E /* Reality Parser.app */;
@@ -118,7 +115,6 @@
 			);
 			mainGroup = 73B533592816D5B900D5CB0E;
 			packageReferences = (
-				732F61862BBB258600B36209 /* XCRemoteSwiftPackageReference "ZIPFoundation" */,
 			);
 			productRefGroup = 73B533632816D5BA00D5CB0E /* Products */;
 			projectDirPath = "";
@@ -313,6 +309,10 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.TianningDigital.Reality-Parser";
@@ -347,6 +347,10 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.TianningDigital.Reality-Parser";
@@ -378,25 +382,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		732F61862BBB258600B36209 /* XCRemoteSwiftPackageReference "ZIPFoundation" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/weichsel/ZIPFoundation.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.9.18;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		732F61872BBB258600B36209 /* ZIPFoundation */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 732F61862BBB258600B36209 /* XCRemoteSwiftPackageReference "ZIPFoundation" */;
-			productName = ZIPFoundation;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 73B5335A2816D5B900D5CB0E /* Project object */;
 }
