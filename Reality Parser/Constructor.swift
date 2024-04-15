@@ -9,7 +9,6 @@ import Foundation
 import os
 import RealityKit
 import Metal
-import ZIPFoundation
 
 /// Error thrown when an illegal option is specified.
 private enum IllegalOption: Swift.Error {
@@ -98,6 +97,7 @@ class Constructor:ObservableObject {
                     case .requestProgress(_, let fractionComplete):
                         await contentView.updateProgress(fractionComplete: fractionComplete)
                     case .inputComplete:  // For data ingestion
+                    case .inputComplete:  // For data ingestion
                         print("Data ingestion is complete.  Beginning processing...")
                     case .invalidSample(let id, let reason):
                         print("Invalid Sample! id=\(id)  reason=\"\(reason)\"")
@@ -139,6 +139,9 @@ class Constructor:ObservableObject {
                                               contentView: ContentView) {
         print("Request complete: \(String(describing: request))")
         switch result {
+<<<<<<< HEAD
+        case .modelFile(_):
+=======
         case .modelFile(let url):
         
         /// Converts USDA and assets to USDZ
@@ -157,6 +160,7 @@ class Constructor:ObservableObject {
             print("Cleanup error: \(String(describing: error))")
         }
             
+            
         default:
             print("\tUnexpected result: \(String(describing: result))")
         }
@@ -170,6 +174,8 @@ class Constructor:ObservableObject {
             self.session?.cancel()
         }
     }
+<<<<<<< HEAD
+=======
     
     /// Converts usdc crate in result to usda text format
     private static func convert(url: URL){
@@ -193,5 +199,26 @@ class Constructor:ObservableObject {
         } catch {
             print("Creation of ZIP archive failed with error:\(error)")
         }
+        do {
+            let fileManager = FileManager()
+            var sourceURL = URL(fileURLWithPath: NSTemporaryDirectory()).appending(path: "modelTemp/")
+            
+            try fileManager.removeItem(at: sourceURL.appending(path: "baked_mesh.mtl"))
+            try fileManager.removeItem(at: sourceURL.appending(path: "baked_mesh.obj"))
+            let destinationURL = URL(fileURLWithPath: self.resultPath)
+            print("From: " + String(describing: sourceURL) + " To: " + String(describing: destinationURL))
+            
+            let archive = try Archive(url: URL(fileURLWithPath: self.resultPath), accessMode: .create)
+            
+            /// Only listing manually works, don't know why.
+            try archive.addEntry(with: "baked_mesh.usda", relativeTo: sourceURL, compressionMethod: .none, bufferSize: 64, progress: nil)
+            try archive.addEntry(with: "baked_mesh_tex0.png", relativeTo: sourceURL, compressionMethod: .none, bufferSize: 64, progress: nil)
+            try archive.addEntry(with: "baked_mesh_norm0.png", relativeTo: sourceURL, compressionMethod: .none, bufferSize: 64, progress: nil)
+            try archive.addEntry(with: "baked_mesh_ao0.png", relativeTo: sourceURL, compressionMethod: .none, bufferSize: 64, progress: nil)
+            
+        } catch {
+            print("Creation of ZIP archive failed with error:\(error)")
+        }
     }
+>>>>>>> AsciiOutput
 }

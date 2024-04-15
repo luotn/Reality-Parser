@@ -52,6 +52,7 @@ struct ContentView: View {
                 HStack{
                     Button(String(localized: "Select Folder")) {
                         self.outputFolder = self.selectOutputFolder()
+                        self.outputFolder = self.selectOutputFolder()
                     }.padding([.bottom], 5)
                 }
                 HStack {
@@ -162,7 +163,6 @@ struct ContentView: View {
         if (savePanel.runModal() ==  NSApplication.ModalResponse.OK) {
             let result = savePanel.url
             if (result != nil) {
-                self.outputFolder = result!.path
                 return result!.path
             }
         }
