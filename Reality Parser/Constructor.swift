@@ -9,6 +9,7 @@ import Foundation
 import os
 import RealityKit
 import Metal
+import ZIPFoundation
 
 /// Error thrown when an illegal option is specified.
 private enum IllegalOption: Swift.Error {
@@ -96,7 +97,7 @@ class Constructor:ObservableObject {
                         Constructor.handleRequestComplete(request: request, result: result, contentView: contentView)
                     case .requestProgress(_, let fractionComplete):
                         await contentView.updateProgress(fractionComplete: fractionComplete)
-                    case .inputComplete:  // data ingestion only!
+                    case .inputComplete:  // For data ingestion
                         print("Data ingestion is complete.  Beginning processing...")
                     case .invalidSample(let id, let reason):
                         print("Invalid Sample! id=\(id)  reason=\"\(reason)\"")
@@ -120,10 +121,10 @@ class Constructor:ObservableObject {
             }
         }
         
-        // The compiler may deinitialize these objects since they may appear to be unused. This keeps them from being deallocated.
+        /// The compiler may deinitialize these objects since they may appear to be unused. This keeps them from being deallocated.
         do {
             try withExtendedLifetime((session, waiter)) {
-                // Run the main process call on the request, you get the published completion event or error.
+                /// Run the main process call on the request, you get the published completion event or error.
                 print("Using request: \(String(describing: request))")
                 try session.process(requests: [ request ])
             }
@@ -144,17 +145,18 @@ class Constructor:ObservableObject {
         Constructor.convert(url: url);
             
         /// Clean up temp folders
-//        do {
-//            let fileManager = FileManager()
-//            let tmpDirectory = try fileManager.contentsOfDirectory(atPath: NSTemporaryDirectory())
-//            try tmpDirectory.forEach {[unowned fileManager] file in
-//                let path = String.init(format: "%@%@", NSTemporaryDirectory(), file)
-//                try fileManager.removeItem(atPath: path)
-//            }
-//            print("Cleared photogrammetry session cache")
-//        } catch {
-//            print("Cleanup error: \(String(describing: error))")
-//        }
+        do {
+            let fileManager = FileManager()
+            let tmpDirectory = try fileManager.contentsOfDirectory(atPath: NSTemporaryDirectory())
+            try tmpDirectory.forEach {[unowned fileManager] file in
+                let path = String.init(format: "%@%@", NSTemporaryDirectory(), file)
+                try fileManager.removeItem(atPath: path)
+            }
+            print("Cleared photogrammetry session cache")
+        } catch {
+            print("Cleanup error: \(String(describing: error))")
+        }
+            
         default:
             print("\tUnexpected result: \(String(describing: result))")
         }
@@ -173,39 +175,23 @@ class Constructor:ObservableObject {
     private static func convert(url: URL){
         do {
             let fileManager = FileManager()
-            let sourceURL = URL(fileURLWithPath: NSTemporaryDirectory()).appending(path: "modelTemp/")
-            let USDZFolder = sourceURL.appending(path: "0/")
-            try fileManager.createDirectory(at: USDZFolder, withIntermediateDirectories: true)
-            try fileManager.moveItem(at: sourceURL.appending(path: "baked_mesh_ao0.png"), to: USDZFolder.appending(path: "baked_mesh_ao0.png"))
-            try fileManager.moveItem(at: sourceURL.appending(path: "baked_mesh_norm0.png"), to: USDZFolder.appending(path: "baked_mesh_norm0.png"))
-            try fileManager.moveItem(at: sourceURL.appending(path: "baked_mesh_tex0.png"), to: USDZFolder.appending(path: "baked_mesh_tex0.png"))
+            var sourceURL = URL(fileURLWithPath: NSTemporaryDirectory()).appending(path: "modelTemp/")
+            
             try fileManager.removeItem(at: sourceURL.appending(path: "baked_mesh.mtl"))
             try fileManager.removeItem(at: sourceURL.appending(path: "baked_mesh.obj"))
             let destinationURL = URL(fileURLWithPath: self.resultPath)
             print("From: " + String(describing: sourceURL) + " To: " + String(describing: destinationURL))
-
-//            try fileManager.zipItem(at: sourceURL, to: destinationURL)
-            print(self.shell("convert.command"))
+            
+            let archive = try Archive(url: URL(fileURLWithPath: self.resultPath), accessMode: .create)
+            
+            /// Only listing manually works, don't know why.
+            try archive.addEntry(with: "baked_mesh.usda", relativeTo: sourceURL, compressionMethod: .none, bufferSize: 64, progress: nil)
+            try archive.addEntry(with: "baked_mesh_tex0.png", relativeTo: sourceURL, compressionMethod: .none, bufferSize: 64, progress: nil)
+            try archive.addEntry(with: "baked_mesh_norm0.png", relativeTo: sourceURL, compressionMethod: .none, bufferSize: 64, progress: nil)
+            try archive.addEntry(with: "baked_mesh_ao0.png", relativeTo: sourceURL, compressionMethod: .none, bufferSize: 64, progress: nil)
             
         } catch {
             print("Creation of ZIP archive failed with error:\(error)")
         }
-    }
-    
-    static func shell(_ command: String) -> String {
-        let task = Process()
-        let pipe = Pipe()
-        
-        task.standardOutput = pipe
-        task.standardError = pipe
-        task.arguments = ["-c", command]
-        task.launchPath = "/bin/zsh"
-        task.standardInput = nil
-        task.launch()
-        
-        let data = pipe.fileHandleForReading.readDataToEndOfFile()
-        let output = String(data: data, encoding: .utf8)!
-        
-        return output
     }
 }
