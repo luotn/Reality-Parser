@@ -177,7 +177,7 @@ class Constructor:ObservableObject {
     private static func convert(url: URL){
         do {
             let fileManager = FileManager()
-            var sourceURL = URL(fileURLWithPath: NSTemporaryDirectory()).appending(path: "modelTemp/")
+            let sourceURL = URL(fileURLWithPath: NSTemporaryDirectory()).appending(path: "modelTemp/")
             
             try fileManager.removeItem(at: sourceURL.appending(path: "baked_mesh.mtl"))
             try fileManager.removeItem(at: sourceURL.appending(path: "baked_mesh.obj"))
@@ -197,7 +197,7 @@ class Constructor:ObservableObject {
         }
         do {
             let fileManager = FileManager()
-            var sourceURL = URL(fileURLWithPath: NSTemporaryDirectory()).appending(path: "modelTemp/")
+            let sourceURL = URL(fileURLWithPath: NSTemporaryDirectory()).appending(path: "modelTemp/")
             
             try fileManager.removeItem(at: sourceURL.appending(path: "baked_mesh.mtl"))
             try fileManager.removeItem(at: sourceURL.appending(path: "baked_mesh.obj"))
