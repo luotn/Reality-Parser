@@ -7,10 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-<<<<<<< HEAD
-=======
 		737E7C872BCD5A8400BC2F13 /* ZIPFoundation in Frameworks */ = {isa = PBXBuildFile; productRef = 737E7C862BCD5A8400BC2F13 /* ZIPFoundation */; };
->>>>>>> AsciiOutput
 		737E7C872BCD5A8400BC2F13 /* ZIPFoundation in Frameworks */ = {isa = PBXBuildFile; productRef = 737E7C862BCD5A8400BC2F13 /* ZIPFoundation */; };
 		73B533662816D5BA00D5CB0E /* Reality_ParserApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B533652816D5BA00D5CB0E /* Reality_ParserApp.swift */; };
 		73B533682816D5BA00D5CB0E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B533672816D5BA00D5CB0E /* ContentView.swift */; };
@@ -390,8 +387,7 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-<<<<<<< HEAD
-=======
+
 
 /* Begin XCRemoteSwiftPackageReference section */
 		737E7C852BCD5A8400BC2F13 /* XCRemoteSwiftPackageReference "ZIPFoundation" */ = {
@@ -415,7 +411,6 @@
 			productName = ZIPFoundation;
 		};
 /* End XCSwiftPackageProductDependency section */
->>>>>>> AsciiOutput
 	};
 	rootObject = 73B5335A2816D5B900D5CB0E /* Project object */;
 }
