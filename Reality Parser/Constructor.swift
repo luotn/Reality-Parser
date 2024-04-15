@@ -97,6 +97,7 @@ class Constructor:ObservableObject {
                     case .requestProgress(_, let fractionComplete):
                         await contentView.updateProgress(fractionComplete: fractionComplete)
                     case .inputComplete:  // For data ingestion
+                    case .inputComplete:  // For data ingestion
                         print("Data ingestion is complete.  Beginning processing...")
                     case .invalidSample(let id, let reason):
                         print("Invalid Sample! id=\(id)  reason=\"\(reason)\"")
@@ -145,7 +146,6 @@ class Constructor:ObservableObject {
         
         /// Converts USDA and assets to USDZ
         Constructor.convert(url: url);
->>>>>>> AsciiOutput
             
         /// Clean up temp folders
         do {
@@ -159,6 +159,7 @@ class Constructor:ObservableObject {
         } catch {
             print("Cleanup error: \(String(describing: error))")
         }
+            
             
         default:
             print("\tUnexpected result: \(String(describing: result))")
@@ -178,6 +179,26 @@ class Constructor:ObservableObject {
     
     /// Converts usdc crate in result to usda text format
     private static func convert(url: URL){
+        do {
+            let fileManager = FileManager()
+            var sourceURL = URL(fileURLWithPath: NSTemporaryDirectory()).appending(path: "modelTemp/")
+            
+            try fileManager.removeItem(at: sourceURL.appending(path: "baked_mesh.mtl"))
+            try fileManager.removeItem(at: sourceURL.appending(path: "baked_mesh.obj"))
+            let destinationURL = URL(fileURLWithPath: self.resultPath)
+            print("From: " + String(describing: sourceURL) + " To: " + String(describing: destinationURL))
+            
+            let archive = try Archive(url: URL(fileURLWithPath: self.resultPath), accessMode: .create)
+            
+            /// Only listing manually works, don't know why.
+            try archive.addEntry(with: "baked_mesh.usda", relativeTo: sourceURL, compressionMethod: .none, bufferSize: 64, progress: nil)
+            try archive.addEntry(with: "baked_mesh_tex0.png", relativeTo: sourceURL, compressionMethod: .none, bufferSize: 64, progress: nil)
+            try archive.addEntry(with: "baked_mesh_norm0.png", relativeTo: sourceURL, compressionMethod: .none, bufferSize: 64, progress: nil)
+            try archive.addEntry(with: "baked_mesh_ao0.png", relativeTo: sourceURL, compressionMethod: .none, bufferSize: 64, progress: nil)
+            
+        } catch {
+            print("Creation of ZIP archive failed with error:\(error)")
+        }
         do {
             let fileManager = FileManager()
             var sourceURL = URL(fileURLWithPath: NSTemporaryDirectory()).appending(path: "modelTemp/")

@@ -52,6 +52,7 @@ struct ContentView: View {
                 HStack{
                     Button(String(localized: "Select Folder")) {
                         self.outputFolder = self.selectOutputFolder()
+                        self.outputFolder = self.selectOutputFolder()
                     }.padding([.bottom], 5)
                 }
                 HStack {
@@ -109,13 +110,9 @@ struct ContentView: View {
                             
                             self.progress = 0.0
                             self.compeleted = false
-<<<<<<< HEAD
-                            try constructor.process(inputFolder: inputFolder, outputFilename: outputFolder,
-=======
                             let fileManager = FileManager()
                             let tempDirectory = fileManager.temporaryDirectory.appending(component: "modelTemp/").path()
                             try constructor.process(inputFolder: inputFolder, outputFilename: tempDirectory,
->>>>>>> AsciiOutput
                                                     detail: detailSetting,
                                                     ordering: ordered == orders[0] ? "unordered" : "sequential",
                                                     sensitivity: sensitivity == sensitivities[0] ? "normal" : "high",
