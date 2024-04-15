@@ -9,6 +9,7 @@ import Foundation
 import os
 import RealityKit
 import Metal
+import ZIPFoundation
 
 /// Error thrown when an illegal option is specified.
 private enum IllegalOption: Swift.Error {
@@ -139,9 +140,7 @@ class Constructor:ObservableObject {
                                               contentView: ContentView) {
         print("Request complete: \(String(describing: request))")
         switch result {
-<<<<<<< HEAD
-        case .modelFile(_):
-=======
+
         case .modelFile(let url):
         
         /// Converts USDA and assets to USDZ
@@ -174,8 +173,6 @@ class Constructor:ObservableObject {
             self.session?.cancel()
         }
     }
-<<<<<<< HEAD
-=======
     
     /// Converts usdc crate in result to usda text format
     private static func convert(url: URL){
@@ -220,5 +217,4 @@ class Constructor:ObservableObject {
             print("Creation of ZIP archive failed with error:\(error)")
         }
     }
->>>>>>> AsciiOutput
 }
