@@ -7,13 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		737E7C872BCD5A8400BC2F13 /* ZIPFoundation in Frameworks */ = {isa = PBXBuildFile; productRef = 737E7C862BCD5A8400BC2F13 /* ZIPFoundation */; };
-		737E7C872BCD5A8400BC2F13 /* ZIPFoundation in Frameworks */ = {isa = PBXBuildFile; productRef = 737E7C862BCD5A8400BC2F13 /* ZIPFoundation */; };
+		737E7C872BCD5A8400BC2F13 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		73B533662816D5BA00D5CB0E /* Reality_ParserApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B533652816D5BA00D5CB0E /* Reality_ParserApp.swift */; };
 		73B533682816D5BA00D5CB0E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B533672816D5BA00D5CB0E /* ContentView.swift */; };
 		73B5336A2816D5BA00D5CB0E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73B533692816D5BA00D5CB0E /* Assets.xcassets */; };
 		73B533752816D60100D5CB0E /* Constructor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B533742816D60100D5CB0E /* Constructor.swift */; };
 		73B533782816D77000D5CB0E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 73B5337A2816D77000D5CB0E /* Localizable.strings */; };
+		73D6100B2BCE9A2500F5D761 /* ZIPFoundation in Frameworks */ = {isa = PBXBuildFile; productRef = 73637ED82BCD94EF00EC1FD0 /* ZIPFoundation */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,8 +33,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				73D6100B2BCE9A2500F5D761 /* ZIPFoundation in Frameworks */,
 				737E7C872BCD5A8400BC2F13 /* (null) in Frameworks */,
-				73637ED92BCD94EF00EC1FD0 /* ZIPFoundation in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -388,7 +388,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
 
 /* Begin XCRemoteSwiftPackageReference section */
 		73637ED72BCD94EF00EC1FD0 /* XCRemoteSwiftPackageReference "ZIPFoundation" */ = {
